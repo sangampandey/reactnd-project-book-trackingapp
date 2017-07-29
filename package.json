@@ -4,7 +4,8 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.2",
-    "react-select": "^1.0.0-rc.5"
+    "react-select": "^1.0.0-rc.5",
+    "react-stars": "^2.1.0"
   },
   "devDependencies": {
     "eslint-plugin-flowtype": "^2.35.0",
