@@ -9,7 +9,10 @@ class Book extends Component {
         updateBookShelf: PropTypes.func.isRequired,
     };
 
-    // @description : create dynamic option item for select
+    /**
+     * @description : create dynamic option item for select
+     * @returns {Array} items - return the options for select item
+     */
     createSelectItems = () => {
         let items = [];
         this.props.shelfArray.map((option) => (
@@ -18,7 +21,10 @@ class Book extends Component {
         return items;
     };
 
-    // @description : text input change listener
+    /**
+     * @description : text input change listener
+     * @param event - javascript event on button
+     */
     handleChange = (event) => {
         const bookId = event.target.getAttribute('data-id');
         const shelfNewState = event.target.value;
@@ -47,7 +53,7 @@ class Book extends Component {
                     </div>
                 </div>
                 <div className="book-title">{book.title}</div>
-                <div className="book-authors">{book.authors.toString()}</div>
+                <div className="book-authors">{book.authors ? book.authors.toString() : book.authors}</div>
             </div>
         );
     }

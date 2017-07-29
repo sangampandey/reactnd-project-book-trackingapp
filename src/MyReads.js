@@ -8,26 +8,13 @@ class MyReads extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
         updateBookShelf: PropTypes.func.isRequired,
+        shelfArray:PropTypes.array.isRequired,
     }
-
-    shelfArray = [{
-        id: 1,
-        value: "currentlyReading",
-        readableName: "Currently Reading"
-    }, {
-        id: 2,
-        value: "wantToRead",
-        readableName: "Want to Read"
-    }, {
-        id: 3,
-        value: "read",
-        readableName: "Read"
-    }];
 
 
     render() {
 
-        const {books,updateBookShelf} = this.props;
+        const {books,updateBookShelf,shelfArray} = this.props;
 
         return (
             <div className="list-books">
@@ -37,7 +24,7 @@ class MyReads extends Component {
                 <div className="list-books-content">
                     <div>
                         {
-                         this.shelfArray.map((shelf)=> (
+                            shelfArray.map((shelf)=> (
                              <div className="bookshelf" key={shelf.id}>
                                  <h2 className="bookshelf-title">{shelf.readableName}</h2>
                                  <div className="bookshelf-books">
@@ -46,7 +33,7 @@ class MyReads extends Component {
                                              (book.shelf === shelf.value)
                                          )).map((book) => (
                                              <li key={book.id}>
-                                                 <Book book={book} shelfArray={this.shelfArray} updateBookShelf={updateBookShelf}/>
+                                                 <Book book={book} shelfArray={shelfArray} updateBookShelf={updateBookShelf}/>
                                              </li>
                                          ))}
                                      </ol>
