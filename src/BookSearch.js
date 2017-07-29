@@ -7,6 +7,7 @@ import Book from './Book'
 class BookSearch extends Component {
 
     maxResults = 20
+    noResults = ""
 
     static propTypes = {
         shelfArray:PropTypes.array.isRequired,
@@ -26,26 +27,35 @@ class BookSearch extends Component {
     updateQuery = (query) => {
         this.setState({ query: query })
 
-        // search only if the query exceeds more than 3 characters
-        if(query && query.length>3){
+        // search only if the query exceeds more than 2 characters
+        if(query && query.length>2){
 
             // fetch books based on the query and return maximum 20 results
             BooksAPI.search(query,this.maxResults).then((books) => {
 
-                // check if the booksOnShelf is present in our search results as well
-                // if yes then update their shelf status to reflect
-                this.props.booksOnShelf.map(function(shelfBook){
-                    books.map(function(book,index){
-                        if(book.id === shelfBook.id){
-                            books[index] = shelfBook;
-                        }
-                    });
-                });
+                console.log(books.error);
 
-                // set the new state of the books Array
-                this.setState((state) => ({
-                    books: books
-                }))
+                if(books.hasOwnProperty("error")){
+                    this.noResults = "No results found"
+                }else{
+
+                    this.noResults = ""
+
+                    // check if the booksOnShelf is present in our search results as well
+                    // if yes then update their shelf status to reflect
+                    this.props.booksOnShelf.map(function(shelfBook){
+                        books.map(function(book,index){
+                            if(book.id === shelfBook.id){
+                                books[index] = shelfBook;
+                            }
+                        });
+                    });
+
+                    // set the new state of the books Array
+                    this.setState((state) => ({
+                        books: books
+                    }))
+                }
             })
         }
     }
@@ -109,6 +119,7 @@ class BookSearch extends Component {
                     {(query.length>0)?<div onClick={this.clearQuery} className="clear-search"></div>:""}
                 </div>
                 <div className="search-books-results">
+                    {this.noResults}
                     <ol className="books-grid">
                         {books.map((book) => (
                             <li key={book.id}>

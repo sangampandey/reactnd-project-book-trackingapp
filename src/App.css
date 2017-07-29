@@ -173,7 +173,7 @@ body, .app {
   font-size: 0.8em;
 }
 
-/* some additional css*/
+/* some additional css */
 .clear-search {
   display: block;
   top: 20px;
@@ -186,4 +186,13 @@ body, .app {
   background-repeat: no-repeat;
   background-size: 28px;
   font-size: 0;
+}
+
+.rating-span{
+  float: left;
+  margin-right: 10px;
+  font-size: 0.8em;
+  color: #0066c0;
+  line-height: 25px;
+  vertical-align: middle;
 }

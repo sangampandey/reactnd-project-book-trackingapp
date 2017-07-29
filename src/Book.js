@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactStars from 'react-stars';
 import PropTypes from 'prop-types'
 
 class Book extends Component {
@@ -41,7 +42,7 @@ class Book extends Component {
                     <div className="book-cover" style={{
                         width: 128,
                         height: 193,
-                        backgroundImage: `url(${book.imageLinks.smallThumbnail})`
+                        backgroundImage: `url(${(book.imageLinks)?book.imageLinks.thumbnail:"http://via.placeholder.com/128x193?text=placeholder"})`
                     }}></div>
                     <div className="book-shelf-changer">
 
@@ -54,6 +55,10 @@ class Book extends Component {
                 </div>
                 <div className="book-title">{book.title}</div>
                 <div className="book-authors">{book.authors ? book.authors.toString() : book.authors}</div>
+                <div>
+                    <span className="rating-span"><ReactStars value={book.averageRating} /></span>
+                    <span className="rating-span">({book.ratingsCount?book.ratingsCount:0})</span>
+                </div>
             </div>
         );
     }
