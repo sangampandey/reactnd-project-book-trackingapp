@@ -196,3 +196,7 @@ body, .app {
   line-height: 25px;
   vertical-align: middle;
 }
+
+.rating-span >div >span{
+  cursor: default !important;
+}
