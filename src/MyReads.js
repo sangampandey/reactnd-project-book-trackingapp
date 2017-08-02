@@ -19,9 +19,6 @@ class MyReads extends Component {
 
         return (
             <div className="list-books">
-                {/*<div className="list-books-title">*/}
-                    {/*<h1>MyReads</h1>*/}
-                {/*</div>*/}
                 <div className="list-books-content">
                     <div>
                         {
@@ -34,7 +31,6 @@ class MyReads extends Component {
                                              (book.shelf === shelf.value)
                                          )).map((book) => (
                                              <li key={book.id}>
-                                                 {/*<Book book={book} shelfArray={shelfArray} updateBookShelf={updateBookShelf}/>*/}
                                                  <BookShelf book={book} shelfArray={shelfArray} updateBookShelf={updateBookShelf}/>
                                              </li>
                                          ))}

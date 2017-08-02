@@ -33,8 +33,6 @@ class BookSearch extends Component {
             // fetch books based on the query and return maximum 20 results
             BooksAPI.search(query,this.maxResults).then((books) => {
 
-                console.log(books.error);
-
                 if(books.hasOwnProperty("error")){
                     this.noResults = "No results found"
                 }else{
@@ -94,7 +92,10 @@ class BookSearch extends Component {
         }))
 
         // invoke the API to update the shelf state of the book
-        BooksAPI.update(updatedBook,newShelfState);
+        BooksAPI.update(updatedBook,newShelfState).then((book) => {
+            console.log(book);
+            this.props.addBookToShelf(updatedBook);
+        })
     }
 
 

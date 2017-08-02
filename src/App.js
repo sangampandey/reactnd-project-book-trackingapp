@@ -54,6 +54,11 @@ class BooksApp extends Component {
             updatedBooks.push(book);
         });
 
+        //if the new shelf state is none just remove the book from the bookshelf
+        if(newShelfState.toLowerCase()==="none"){
+            updatedBooks.pop(updatedBook);
+        }
+
         // set the new state of the books Array
         this.setState((state) => ({
             books: updatedBooks

@@ -7,7 +7,6 @@ body {
 }
 
 body, .app {
-    /*background: white;*/
     background: url(./images/wood.jpg);
 }
 
@@ -41,12 +40,9 @@ body, .app {
 }
 
 .bookshelf-title {
-    /*border-bottom: 1px solid #dedede;*/
     font-family: 'Bungee Inline', cursive;
     color: #ffffff;
     font-size: 200%;
-    /*position: absolute;*/
-    /*padding-top: 250px;*/
     text-align: center;
     width: calc(96vw);
 }
@@ -118,6 +114,19 @@ body, .app {
     padding: 80px 10px 20px;
 }
 
+.clear-search {
+    display: block;
+    top: 20px;
+    left: 15px;
+    width: 50px;
+    height: 53px;
+    background: white;
+    background-image: url('./icons/cancel.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 28px;
+    font-size: 0;
+}
 /* books grid */
 
 .books-grid {
@@ -181,47 +190,6 @@ body, .app {
     cursor: pointer;
 }
 
-/* book cover */
-
-.book-cover {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    background: #eee;
-}
-
-.book-cover-title {
-    padding: 20px 10px 0;
-    text-align: center;
-    font-size: 0.8em;
-}
-
-/* some additional css */
-.clear-search {
-    display: block;
-    top: 20px;
-    left: 15px;
-    width: 50px;
-    height: 53px;
-    background: white;
-    background-image: url('./icons/cancel.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 28px;
-    font-size: 0;
-}
-
-.rating-span {
-    float: left;
-    margin-right: 10px;
-    font-size: 0.8em;
-    color: #0066c0;
-    line-height: 25px;
-    vertical-align: middle;
-}
-
-.rating-span > div > span {
-    cursor: default !important;
-}
-
 .shelf {
     border-bottom: 15px solid #814A2C;
     border-left: 100px solid transparent;
@@ -271,11 +239,38 @@ body, .app {
 
 .book-shelf-changer {
     display: none;
-    /* I assume you'll need display: none; on initialization */
 }
 
 .book-top:hover .book-shelf-changer {
-    /* This selector will apply styles to hotqcontent when parent_div will be hovered */
     display: block;
-    /* Other styles goes here */
 }
+
+/* book cover */
+
+.book-cover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    background: #eee;
+}
+
+.book-cover-title {
+    padding: 20px 10px 0;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.rating-span {
+    float: left;
+    margin-right: 10px;
+    font-size: 0.8em;
+    color: #0066c0;
+    line-height: 25px;
+    vertical-align: middle;
+}
+
+.rating-span > div > span {
+    cursor: default !important;
+}
+
+
+
+
