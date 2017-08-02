@@ -7,7 +7,7 @@ This is a project given as a part of [React Nanodegree program](https://www.udac
 * clone the Project - `git clone https://github.com/sangampandey/reactnd-project-book-trackingapp.git`
 * change the directory to reactnd-project-book-trackingapp
 * install the dependencies - `npm install`
-* start the server - 'npm start'
+* start the server - `npm start`
 
 ## tl;dr
 
