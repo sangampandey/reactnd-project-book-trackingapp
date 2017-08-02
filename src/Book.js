@@ -56,7 +56,7 @@ class Book extends Component {
                 <div className="book-title">{book.title}</div>
                 <div className="book-authors">{book.authors ? book.authors.toString() : book.authors}</div>
                 <div>
-                    <span className="rating-span"><ReactStars value={book.averageRating} /></span>
+                    <span className="rating-span"><ReactStars value={book.averageRating} edit={false} /></span>
                     <span className="rating-span">({book.ratingsCount?book.ratingsCount:0})</span>
                 </div>
             </div>
