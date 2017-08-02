@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Book from './Book'
+import BookShelf from './BookShelf'
 
 class MyReads extends Component {
 
@@ -18,9 +19,9 @@ class MyReads extends Component {
 
         return (
             <div className="list-books">
-                <div className="list-books-title">
-                    <h1>MyReads</h1>
-                </div>
+                {/*<div className="list-books-title">*/}
+                    {/*<h1>MyReads</h1>*/}
+                {/*</div>*/}
                 <div className="list-books-content">
                     <div>
                         {
@@ -28,16 +29,19 @@ class MyReads extends Component {
                              <div className="bookshelf" key={shelf.id}>
                                  <h2 className="bookshelf-title">{shelf.readableName}</h2>
                                  <div className="bookshelf-books">
-                                     <ol className="books-grid">
+                                     <ol className="wrap">
                                          {books.filter((book)=> (
                                              (book.shelf === shelf.value)
                                          )).map((book) => (
                                              <li key={book.id}>
-                                                 <Book book={book} shelfArray={shelfArray} updateBookShelf={updateBookShelf}/>
+                                                 {/*<Book book={book} shelfArray={shelfArray} updateBookShelf={updateBookShelf}/>*/}
+                                                 <BookShelf book={book} shelfArray={shelfArray} updateBookShelf={updateBookShelf}/>
                                              </li>
                                          ))}
                                      </ol>
                                  </div>
+                                 <div className="shelf"></div>
+                                 <div className="shelf_bottom"></div>
                              </div>
                          ))
                         }
