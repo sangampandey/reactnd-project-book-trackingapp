@@ -38,20 +38,23 @@ class BookSearch extends Component {
                 } else {
 
                     this.noResults = ""
+                    const bookShelf = this.props.booksOnShelf;
 
                     // check if the booksOnShelf is present in our search results as well
                     // if yes then update their shelf status to reflect
-                    this.props.booksOnShelf.map(function (shelfBook) {
-                        books.map(function (book, index) {
+                    books.map(function (book, index) {
+                        books[index].shelf = "none";
+                    });
+
+                    books.map(function (book, index) {
+
+                        bookShelf.map(function (shelfBook) {
+
                             if (book.id === shelfBook.id) {
                                 books[index] = shelfBook;
-                            } else {
-                                //this is done for purpose as the book results give you different results
-                                books[index].shelf = "none";
                             }
                         });
                     });
-
                     // set the new state of the books Array
                     this.setState((state) => ({
                         books: books
