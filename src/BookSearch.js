@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom'
 import * as BooksAPI from './utils/BooksAPI'
 import PropTypes from 'prop-types'
 import Book from './Book'
@@ -10,9 +10,9 @@ class BookSearch extends Component {
     noResults = ""
 
     static propTypes = {
-        shelfArray:PropTypes.array.isRequired,
-        booksOnShelf:PropTypes.array.isRequired,
-        addBookToShelf:PropTypes.func.isRequired,
+        shelfArray: PropTypes.array.isRequired,
+        booksOnShelf: PropTypes.array.isRequired,
+        addBookToShelf: PropTypes.func.isRequired,
     }
 
     state = {
@@ -25,26 +25,29 @@ class BookSearch extends Component {
      * @param {string} query - the query string of the search
      */
     updateQuery = (query) => {
-        this.setState({ query: query })
+        this.setState({query: query})
 
         // search only if the query exceeds more than 2 characters
-        if(query && query.length>2){
+        if (query && query.length > 2) {
 
             // fetch books based on the query and return maximum 20 results
-            BooksAPI.search(query,this.maxResults).then((books) => {
+            BooksAPI.search(query, this.maxResults).then((books) => {
 
-                if(books.hasOwnProperty("error")){
+                if (books.hasOwnProperty("error")) {
                     this.noResults = "No results found"
-                }else{
+                } else {
 
                     this.noResults = ""
 
                     // check if the booksOnShelf is present in our search results as well
                     // if yes then update their shelf status to reflect
-                    this.props.booksOnShelf.map(function(shelfBook){
-                        books.map(function(book,index){
-                            if(book.id === shelfBook.id){
+                    this.props.booksOnShelf.map(function (shelfBook) {
+                        books.map(function (book, index) {
+                            if (book.id === shelfBook.id) {
                                 books[index] = shelfBook;
+                            } else {
+                                //this is done for purpose as the book results give you different results
+                                books[index].shelf = "none";
                             }
                         });
                     });
@@ -62,7 +65,7 @@ class BookSearch extends Component {
      * @description Invoke this function whenever we need to clear the search bar
      */
     clearQuery = () => {
-        this.setState({ query: '' })
+        this.setState({query: ''})
     }
 
     /**
@@ -70,16 +73,16 @@ class BookSearch extends Component {
      * @param {string} bookId - the id of the book
      * @param {string} newShelfState - the shelf state of the book i.e. currentlyReading,wantToRead,read,none
      */
-    updateBookShelf = (bookId,newShelfState) => {
+    updateBookShelf = (bookId, newShelfState) => {
 
         // store the book of which shelf status is going to change i.e. updatedBook
         // store the entire updated book Array in updatedBooks to set the state later
-        let updatedBook = null,updatedBooks = [];
+        let updatedBook = null, updatedBooks = [];
 
         // iterate through the books array and find the book with id = bookId & store than information in the
         // updatedBook variable so that we can it to the update BooksAPI
-        this.state.books.map(function(book){
-            if(book.id === bookId){
+        this.state.books.map(function (book) {
+            if (book.id === bookId) {
                 updatedBook = book;
                 book.shelf = newShelfState;
             }
@@ -92,7 +95,7 @@ class BookSearch extends Component {
         }))
 
         // invoke the API to update the shelf state of the book
-        BooksAPI.update(updatedBook,newShelfState).then((book) => {
+        BooksAPI.update(updatedBook, newShelfState).then((book) => {
             console.log(book);
             this.props.addBookToShelf(updatedBook);
         })
@@ -102,7 +105,7 @@ class BookSearch extends Component {
     render() {
 
         const {shelfArray} = this.props;
-        const { query,books } = this.state;
+        const {query, books} = this.state;
 
         return (
             <div className="search-books">
@@ -117,13 +120,13 @@ class BookSearch extends Component {
                             onChange={(event) => this.updateQuery(event.target.value)}
                         />
                     </div>
-                    {(query.length>0)?<div onClick={this.clearQuery} className="clear-search"></div>:""}
+                    {(query.length > 0) ? <div onClick={this.clearQuery} className="clear-search"></div> : ""}
                 </div>
                 <div className="search-books-results">
                     {this.noResults}
                     <ol className="books-grid">
                         {books.map((book) => (
-                            <li key={book.id}>
+                            <li key={Math.random() + book.id}>
                                 <Book book={book} shelfArray={shelfArray} updateBookShelf={this.updateBookShelf}/>
                             </li>
                         ))}
